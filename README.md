@@ -15,7 +15,7 @@ This script is a simple graphical user interface (GUI) application that utilizes
 
 - Python 3.x
 - `yt-dlp` command-line utility
-- `tkinter` for the GUI interface
+- `tkinter` for the GUI interface (Should be pre-installed with python otherwise -> pip install tkinter
 
 ## Installation
 
@@ -23,7 +23,6 @@ Before running the script, `yt-dlp` must be installed. The script checks for t
 
 ```
 pip install yt-dlp
-pip install tkinter
 ```
 
 ## Features
