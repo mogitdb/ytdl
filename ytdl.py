@@ -25,13 +25,29 @@ if not is_yt_dlp_installed():
 def download_video():
     update_progress_label("Download in Progress...")
     url = url_entry.get()
-    desktop_path = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-    download_path = os.path.join(desktop_path, "mp3", "dl")
+    download_path = "C:\\dl"  # Updated download path
     if not os.path.exists(download_path):
         os.makedirs(download_path)
-    # Download commands
-    # ... [Same as before]
-    update_progress_label("Download Complete")
+    # Download the best video and audio separately and merge them
+    video_command = [
+        'yt-dlp',
+        '-f', 'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]/best',
+        '--merge-output-format', 'mp4',
+        '-o', os.path.join(download_path, '%(title)s.%(ext)s'),
+        url
+    ]
+    audio_command = [
+        'yt-dlp',
+        '-x', '--audio-format', 'mp3',
+        '-o', os.path.join(download_path, '%(title)s.%(ext)s'),
+        url
+    ]
+    try:
+        subprocess.run(video_command, check=True)
+        subprocess.run(audio_command, check=True)
+        update_progress_label("Download Complete")
+    except subprocess.CalledProcessError as e:
+        update_progress_label("An error occurred: " + str(e))
 
 # Function to update progress label
 def update_progress_label(message):
@@ -54,7 +70,7 @@ url_entry = tk.Entry(root, width=40)
 url_entry.pack(pady=20)
 
 # Download Button
-download_button = tk.Button(root, text="YTDLP", command=start_download_thread, bg="white", fg="black")
+download_button = tk.Button(root, text="Download", command=start_download_thread, bg="white", fg="black")
 download_button.pack(pady=10)
 
 # Progress Label
