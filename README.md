@@ -28,7 +28,7 @@ pip install yt-dlp
 ## Features
 
 - Simple and easy-to-use GUI
-- Downloads videos directly to the user's desktop in an `mp3/dl` folder
+- Downloads videos directly to the user's C: drive in a `dl` folder
 - Status updates provided through the GUI
 
 ## How to Use
@@ -37,7 +37,7 @@ pip install yt-dlp
     
 3. Enter the video URL in the text field.
     
-2. Click the "YTDLP" button to start the download.
+2. Click the "Download" button to start the download.
     
 3. The progress will be displayed in the application window.
 ## Troubleshooting
